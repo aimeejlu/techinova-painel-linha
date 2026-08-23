@@ -72,6 +72,9 @@ Antes de iniciar, certifique-se de ter instalado em sua máquina:
 
 ## ⚙️ Instalação e Configuração
 
+Nome completo: Aimée Juliana de Oliveira Lima
+Matrícula: 26174872
+
 1. **Clone o Repositório:**
 
    ```bash
