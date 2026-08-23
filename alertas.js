@@ -1,36 +1,38 @@
 // Modulo de alertas criticos - Painel Linha 3
 
-let limite = 80;
+const LIMITE_TEMPERATURA_MAX = 80; // graus Celsius
+const LIMITE_PRESSAO_MAX = 150; // psi
+const LIMITE_VIBRACAO_MAX = 10; // mm/s
 
 function verificarAlerta(temperatura, pressao, vibracao) {
-  var status = "";
-  
-  if (temperatura > limite) {
-    status = "ALERTA: temperatura alta"
-    console.log(status)
+  let alertas = [];
+
+  if (temperatura > LIMITE_TEMPERATURA_MAX) {
+    alertas.push("ALERTA: temperatura alta");
   }
 
-  if (pressao > 150) {
-    status = "ALERTA: pressao alta"
-    console.log(status)
+  if (pressao > LIMITE_PRESSAO_MAX) {
+    alertas.push("ALERTA: pressao alta");
   }
 
-  if (vibracao > 10) {
-    status = "ALERTA: vibracao alta"
-    console.log(status)
+  if (vibracao > LIMITE_VIBRACAO_MAX) {
+    alertas.push("ALERTA: vibracao alta");
   }
 
-  return status;
+  return alertas;
 }
 
 function enviarNotificacao(msg) {
   // TODO: integrar com sistema de notificacao real
-  console.log("Notificando: " + msg)
+  console.log("Notificando: " + msg);
 }
 
 function processarLeitura(dados) {
-  const alerta = verificarAlerta(dados.temperatura, dados.pressao, dados.vibracao)
-  enviarNotificacao(alerta)
+  const alertas = verificarAlerta(dados.temperatura, dados.pressao, dados.vibracao);
+  
+  if (alertas.length > 0) {
+    alertas.forEach(alerta => enviarNotificacao(alerta));
+  }
 }
 
-module.exports = { verificarAlerta, processarLeitura }
+module.exports = { verificarAlerta, processarLeitura };
